@@ -1,0 +1,267 @@
+.topHeaderBg{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    z-index: -100;
+    overflow: hidden;
+}
+.topHeaderBg:after{
+    content:"";
+    width:100%;
+    height:20%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    z-index:-1;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #7f0000);
+}
+.topHeaderBg:before{
+    content:"";
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    //-webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1.0, 1.0);
+    transform: translateZ(0);
+    background:#000 url('../../img/bg_index.jpg') top center no-repeat;
+    background-size: cover;
+    //background-attachment:fixed;
+    animation: grow 60s  linear 10ms infinite;
+    transition:all 0.2s ease-in-out;
+    z-index:-2;
+}
+
+@keyframes grow{
+    0% { transform:scale(1)}
+    50% { transform:scale(1.2)}
+}
+
+.header h2 ,.header h3{
+    color: #FFF;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.header h2{
+    font-size: 9vw;
+    margin-top: 30px;
+    margin-bottom: 0;
+    @media screen and (min-width: 992px){
+        font-size: 7vw;
+    }
+    @media screen and (min-width: 1200px){
+        font-size: 5.5vw;
+    }
+}
+.header h3{
+    font-size: 4vw;
+    font-weight: 400;
+    @media screen and (min-width: 992px){
+        font-size: 2.8vw;
+    }
+    @media screen and (min-width: 1200px){
+        font-size: 2.2vw;
+    }
+}
+.headerInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.datePick{
+
+    >span{
+        margin-top: 10px;
+        border-radius: 30px;
+        background-color: transparent;
+        border: 0;
+
+        >span, >input ,>i {
+            color:#FFF;
+            background: transparent;
+        }
+
+        .ant-calendar-picker-clear{
+            transform: translateX(15px);
+        }
+        >i:nth-child(4):hover{
+            color: #FFF;
+        }
+        >i:nth-child(5){
+            transform: translateX(17px);
+        }
+    }
+}
+
+.datePickPopup{
+    transition: none;
+    left: 50vw !important;
+    transform: translateX(-276px)
+}
+
+.feedContainer{
+    background: #FFF;
+    padding: 0px 15px;
+    margin: 30px auto;
+    width: 95vw;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+    h4{
+        color: #3e4857;
+        font-weight: 700;
+        font-size: 1.3rem;
+        padding-top: 15px;
+        @media screen and (min-width: 768px){
+            padding-top: 30px;
+            font-size: 2rem;
+        }
+    }
+
+    @media screen and (min-width: 768px){
+        width: 90vw;
+        padding: 0px 30px;
+        margin: 30px auto;
+    }
+}
+.feedCard{
+    margin-bottom: 10px;
+
+    div:nth-child(1){
+        img{
+            box-shadow: 0px 4px 13px #DDD;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+            width: 100%;
+        }
+        img:hover{
+            box-shadow: 0px 7px 13px #BBB;
+            transform: translateY(-3px);
+            cursor: pointer;
+        }
+    }
+    div:nth-child(2){
+        padding: 8px;
+        color: #9e9e9e;
+        
+        .t1, .t2, .t3{
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.7rem;
+            border-radius: 3px;
+            padding: 2px 4px;
+            box-shadow: 0 1px 2px #DDD;
+        }
+        .t1{
+            background-color: #0f864b;
+        }
+        .t2{
+            background-color: #ecb500;
+        }
+        .t3{
+            background-color: #b384ff;
+        }
+        .cardTitle{
+            color: #3e4857;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 0;
+        }
+        p{
+            text-align: justify;
+            text-indent: 20px;
+        }
+    }
+}
+
+.weatherCard{
+    margin-bottom: 30px;
+
+    >div:nth-child(1){
+
+        box-shadow: 0px 4px 13px #DDD;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        background-size: cover;
+        width: 100%;
+
+        .weatherInfo{
+            /*background: url('../../img/weatherwall.jpg') top center no-repeat;*/
+            background-color: #01b0f1;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            
+            .weatherTitle{
+                padding: 10px 25px;
+                border-radius: 10px 10px 0 0;
+                font-size: 2rem;
+                font-weight: 900;
+                display: flex;
+                color: #FFF;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .date{
+                    font-size: .8rem;
+                    text-align: right;
+                }
+            }
+            .weatherBody{
+                display: flex;
+                flex-direction: column;
+                .bodyImg{
+                    padding: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-start;
+                    line-height: 25px;
+                    color: #FFF;
+                    font-weight: 500;
+                    font-size: 2rem;
+                    .iconw{
+                        max-width: 70px;
+                        max-height: 70px;
+                        margin-right: 10px;
+                    }
+                    margin-bottom: 15px;
+                }
+                .bodyInfo{
+                    height: 75px;
+                    background-color: #FFF;
+                    border-radius: 0 0 10px 10px;
+                    display: flex;
+                    padding: 5px;
+
+                    div{
+                        width: 25%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        p{
+                            margin: 0;
+                        }
+                        .iconsmall{
+                            max-width: 40px;
+                            max-height: 40px;
+                        }
+                    }
+                    >div:nth-child(1), div:nth-child(2), div:nth-child(3) {
+                        border-right: 1.5px solid #e9e9e9;
+                    }
+                }
+            }
+        }
+        
+    }
+    >div:nth-child(2){
+        display: none !important;
+    }
+}

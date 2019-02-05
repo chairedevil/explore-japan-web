@@ -1,0 +1,29 @@
+.submitBtn{
+    transition: all 0.2s ease-in-out;
+    border-radius: 30px;
+    border: none;
+    width: 150px;
+    font-weight: 800;
+}
+.submitBtn:hover{
+    background-color: @primary-color;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+.formItemSubmit{
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+}
+.errText{
+    text-align: center;
+    margin-bottom: 0;
+    color: rgba(255, 0, 0, 0.8);
+}
+.signinForm{
+    @media screen and (max-width: 958px ) {
+        width: 60vw !important;
+    }
+    @media screen and (max-width: 600px ) {
+        width: 90vw !important;
+    }
+}
