@@ -17,7 +17,7 @@ const CommentList = ({ comments }) => (
         renderItem={({author, avatar, datetime, content}) => <Comment
             author={author}
             //avatar={`../assets/avatar/${avatar}`}
-            avatar={<Avatar size={40} className={ style.avatar } src={`../assets/avatar/${avatar}`} />}
+            avatar={<Avatar size={40} className={ style.avatar } src={`${config.SERVER_URL}/avatar/${avatar}`} />}
             datetime={ moment(datetime).fromNow() }
             content={content}
         />}
@@ -56,7 +56,6 @@ export class CommentBox extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        //console.log(nextProps.comments, this.props.comments)
         if(nextProps.comments !== this.props.comments){
             this.setState({
                 comments: nextProps.comments
@@ -79,7 +78,7 @@ export class CommentBox extends Component {
             content: this.state.value
         }
 
-        console.log(postData)
+        //console.log(postData)
         axios.post(`${config.SERVER_URL}/comment`, postData).then((response)=>{
             if(response.status === 200){
 
@@ -90,7 +89,7 @@ export class CommentBox extends Component {
                         comments: [
                             {
                                 author: this.props.data.username,
-                                avatar: `../avatar/${ this.props.data.avaPath }`,
+                                avatar: `${this.props.data.avaPath}`,
                                 content: this.state.value,
                                 //datetime: String(moment().fromNow()),
                                 datetime: moment(),
@@ -120,7 +119,7 @@ export class CommentBox extends Component {
                     <Comment
                     avatar={(
                         <Avatar
-                            src={`../assets/avatar/${ this.props.data.avaPath }`}
+                            src={`${config.SERVER_URL}/avatar/${ this.props.data.avaPath }`}
                             alt={this.props.data.username}
                             size={60}
                             className={ style.avatar }

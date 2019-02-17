@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { setSearchVal } from '../redux/actions/searchActions'
 import { convertFromRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html'
+import moment from 'moment'
 
 import Map from '../components/article/Map'
 import CommentBox from '../components/article/CommentBox'
@@ -51,7 +52,6 @@ export class Article extends Component {
 					})
 				})
 			}
-
 		})
 	}
 
@@ -88,7 +88,7 @@ export class Article extends Component {
 		if(this.state.article === null){
 			return (<div></div>)
 		}else{
-		const link = `../assets/img/${article.coverPath}`
+		const link = `${config.SERVER_URL}/img/${article.coverPath}`
 		const alt = article.title
 		const tags = JSON.parse(article.tags)
 		let typeTag
@@ -118,11 +118,17 @@ export class Article extends Component {
 			];
 			break;
 		}
+		//const secondTag = <div className={ style.prefretureTag }>{ article.nameEn.charAt(0).toUpperCase() + article.nameEn.slice(1) }</div>
+		const secondTag = [
+			<Link to="/" key={article.nameEn} className={ style.prefretureTag } onClick={ () => this.handleClickTag(article.nameEn) }>
+				{ article.nameEn.charAt(0).toUpperCase() + article.nameEn.slice(1) }
+			</Link>
+		]
 		const relateDiv = [<div key="relate" className={ style.subContentContainerInner }>
 			<h3 className={ style.h3 }>Relation Post</h3>
 			{
 				relativePost.map((post)=>{
-					const coverSrc = `../assets/img/${post.coverPath}`
+					const coverSrc = `${config.SERVER_URL}/img/${post.coverPath}`
 					const postLink = `/article/${post.articleId}`
 					return [
 						<div key={post.articleId}>
@@ -138,6 +144,15 @@ export class Article extends Component {
 				})
 			}
 		</div>]
+		let timestamp
+		if(article.scopeDateStart && article.scopeDateEnd){
+			const t1 = moment(article.scopeDateStart).format('YYYY-MM-DD')
+			const t2 = moment(article.scopeDateEnd).format('YYYY-MM-DD')
+			timestamp = <p className={ style.timestamp }>Event period: {t1} - {t2}</p>
+		}else if(article.scopeDateStart){
+			const t1 = moment(article.scopeDateStart).format('YYYY-MM-DD')
+			timestamp = <p className={ style.timestamp }>Taked date: {t1}</p>
+		}
 		return (
 			<div>
 				<div className={ style.bg }></div>
@@ -148,8 +163,9 @@ export class Article extends Component {
 							cover={<><img alt={alt} src={link} />{ this.props.authenticated && <SaveBtn savedState={ this.state.saved } uid={this.props.data.sub} aid={ this.props.match.params.articleId } handleSavedChange={ this.handleSavedChange } /> }</>}
 							bordered={false}
 						>
+							{ timestamp }
 							<h2>{article.title}</h2>
-							{ article.content !== null ?  [<div key="content" dangerouslySetInnerHTML={{__html: stateToHTML(convertFromRaw(JSON.parse(article.content)))}} />] : [<div key="content" ></div>]}
+							{ article.content !== null ?  [<div className={ style.contentBox } key="content" dangerouslySetInnerHTML={{__html: stateToHTML(convertFromRaw(JSON.parse(article.content)))}} />] : [<div key="content" ></div>]}
 						</Card>
 						<CommentBox comments={ this.state.comments } articleId={ this.props.match.params.articleId }/>
 					</Col>
@@ -157,6 +173,7 @@ export class Article extends Component {
 					<Col xs={24} sm={24} md={8} lg={6} className={ style.subContentContainer }>
 						<div className={ style.showTagContainer }>
 							{ typeTag }
+							{ secondTag }
 							{
 								tags.map((tag)=>{
 									return [

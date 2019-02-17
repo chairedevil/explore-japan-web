@@ -14,7 +14,7 @@ import config from '../config'
 
 const { Option } = Select
 const { RangePicker } = DatePicker
-const prefectures = ["Hokkaido","Aomori","Iwate","Miyagi","Akita","Yamagata","Fukushima","Ibaraki","Tochigi","Gunma","Saitama","Chiba","Tokyo","Kanagawa","Niigata","Toyama","Ishikawa","Fukui","Yamanashi","Nagano","Gifu","Shizuoka","Aichi","Mie","Shiga","Kyoto","Osaka","Hyogo","Nara","Wakayama"]
+const prefectures = ["Hokkaido","Aomori","Iwate","Miyagi","Akita","Yamagata","Fukushima","Ibaraki","Tochigi","Gunma","Saitama","Chiba","Tokyo","Kanagawa","Niigata","Toyama","Ishikawa","Fukui","Yamanashi","Nagano","Gifu","Shizuoka","Aichi","Mie","Shiga","Kyoto","Osaka","Hyogo","Nara","Wakayama","Japan"]
 
 function getBase64(img, callback) {
 	const reader = new FileReader();
@@ -28,8 +28,8 @@ export class PostArticle extends Component {
         this.state = {
             editorState: EditorState.createEmpty(),
             loading: false,
-            coverGeoLat: '',
-            coverGeoLng: '',
+            coverGeoLat: null,
+            coverGeoLng: null,
             tags: [],
             inputVisible: false,
             inputValue: '',
@@ -52,7 +52,7 @@ export class PostArticle extends Component {
             EXIF.getData(file,function(){
                 const aLat = EXIF.getTag(file, "GPSLatitude")
                 const aLong = EXIF.getTag(file, "GPSLongitude")
-    
+
                 if (aLat && aLong){
                     const strLatRef = EXIF.getTag(file, "GPSLatitudeRef") || "N";
                     const strLongRef = EXIF.getTag(file, "GPSLongitudeRef") || "W";
@@ -76,8 +76,8 @@ export class PostArticle extends Component {
 
                 }else{
                     this.setState({
-                        coverGeoLat: '',
-                        coverGeoLng: ''
+                        coverGeoLat: null,
+                        coverGeoLng: null
                     })
                 }
             }.bind(this))
@@ -102,8 +102,7 @@ export class PostArticle extends Component {
                 config: { headers: {'Content-Type': 'multipart/form-data' }}
             }).then(
                 (response) => {
-                    console.log(response.data)
-                    resolve({ data: { link: `http://localhost:3000/assets/img/${response.data.imgFilename}` } });
+                    resolve({ data: { link: `${config.SERVER_URL}/img/${response.data.imgFilename}` } });
                 }
             )
         })
@@ -137,7 +136,6 @@ export class PostArticle extends Component {
     }
 
     handlePrefectureChange = (value) => {
-        console.log(value)
         this.props.form.setFieldsValue({
             prefectureId: prefectures.indexOf(value) +1
         })
@@ -145,7 +143,6 @@ export class PostArticle extends Component {
 
     handleTagClose = (removedTag) => {
         const tags = this.state.tags.filter(tag => tag !== removedTag);
-        //console.log(tags);
         this.setState({ tags });
     }
     showTagInput = () => {
@@ -174,7 +171,13 @@ export class PostArticle extends Component {
         e.preventDefault()
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log("values:" + values)
+                //console.log(values)
+                let time1 = null
+                let time2 = null
+                if(values.scopeDate !== undefined){
+                    time1 = `${moment(values.scopeDate[0]).toObject().years}-${moment(values.scopeDate[0]).toObject().months+1}-${moment(values.scopeDate[0]).toObject().date}`
+                    time2 = `${moment(values.scopeDate[1]).toObject().years}-${moment(values.scopeDate[1]).toObject().months+1}-${moment(values.scopeDate[1]).toObject().date}`
+                }
                 const rawDraftContentState = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()))
                 const postData = {
                     userId: values.userId,
@@ -185,11 +188,11 @@ export class PostArticle extends Component {
                     content: rawDraftContentState,
                     lat: this.state.coverGeoLat,
                     lng: this.state.coverGeoLng,
-                    scopeDateStart: `${moment(values.scopeDate[0]).toObject().years}-${moment(values.scopeDate[0]).toObject().months+1}-${moment(values.scopeDate[0]).toObject().date}`,
-                    scopeDateEnd: `${moment(values.scopeDate[1]).toObject().years}-${moment(values.scopeDate[1]).toObject().months+1}-${moment(values.scopeDate[1]).toObject().date}`,
+                    scopeDateStart: time1,
+                    scopeDateEnd: time2,
                     tags: JSON.stringify(this.state.tags)
                 }
-                console.log("postData:" + postData)
+                console.log(postData)
                 axios.post(`${config.SERVER_URL}/article`, postData).then((response)=>{
                     if(response.status === 200){
                         this.props.history.push("/")
@@ -411,8 +414,8 @@ export class PostArticle extends Component {
                                 inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
                                 alt: { present: false, mandatory: false },
                                 defaultSize: {
-                                height: '300',
-                                width: 'auto',
+                                height: 'auto',
+                                width: '100%',
                                 },
                             },
                         }}

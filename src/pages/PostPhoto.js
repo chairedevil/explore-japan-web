@@ -10,7 +10,7 @@ import style from '../assets/css/pages/PostArticle.module.less'
 import config from '../config'
 
 const { Option } = Select
-const prefectures = ["Hokkaido","Aomori","Iwate","Miyagi","Akita","Yamagata","Fukushima","Ibaraki","Tochigi","Gunma","Saitama","Chiba","Tokyo","Kanagawa","Niigata","Toyama","Ishikawa","Fukui","Yamanashi","Nagano","Gifu","Shizuoka","Aichi","Mie","Shiga","Kyoto","Osaka","Hyogo","Nara","Wakayama"]
+const prefectures = ["Hokkaido","Aomori","Iwate","Miyagi","Akita","Yamagata","Fukushima","Ibaraki","Tochigi","Gunma","Saitama","Chiba","Tokyo","Kanagawa","Niigata","Toyama","Ishikawa","Fukui","Yamanashi","Nagano","Gifu","Shizuoka","Aichi","Mie","Shiga","Kyoto","Osaka","Hyogo","Nara","Wakayama","Japan"]
 
 function getBase64(img, callback) {
 	const reader = new FileReader();
@@ -23,8 +23,8 @@ export class PostPhoto extends Component {
         super(props);
         this.state = {
             loading: false,
-            coverGeoLat: '',
-            coverGeoLng: '',
+            coverGeoLat: null,
+            coverGeoLng: null,
             tags: [],
             inputVisible: false,
             inputValue: '',
@@ -47,6 +47,7 @@ export class PostPhoto extends Component {
             EXIF.getData(file,function(){
                 const aLat = EXIF.getTag(file, "GPSLatitude")
                 const aLong = EXIF.getTag(file, "GPSLongitude")
+                const takenTime = file.exifdata.DateTimeOriginal.split(' ')[0].split(':')
     
                 if (aLat && aLong){
                     const strLatRef = EXIF.getTag(file, "GPSLatitudeRef") || "N";
@@ -63,8 +64,6 @@ export class PostPhoto extends Component {
                             coverGeoLng: fLong,
                         })
 
-                        const takenTime = file.exifdata.DateTimeOriginal.split(' ')[0].split(':')
-
                         this.props.form.setFieldsValue({
                             prefecture: prefectureFromPhoto,
                             prefectureId: prefectures.indexOf(prefectureFromPhoto) +1,
@@ -74,8 +73,11 @@ export class PostPhoto extends Component {
 
                 }else{
                     this.setState({
-                        coverGeoLat: '',
-                        coverGeoLng: ''
+                        coverGeoLat: null,
+                        coverGeoLng: null
+                    })
+                    this.props.form.setFieldsValue({
+                        scopeDate: moment(`${takenTime[0]}-${takenTime[1]}-${takenTime[2]}`)
                     })
                 }
             }.bind(this))

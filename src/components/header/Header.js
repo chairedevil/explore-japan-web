@@ -6,6 +6,7 @@ import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
 import history from '../../history'
 import { Row, Col, Menu, Icon, Avatar, Dropdown } from 'antd'
+import config from '../../config'
 
 import SigninForm from './SigninForm'
 import SidebarMenu from './SidebarMenu'
@@ -79,7 +80,8 @@ class HeaderContainer extends Component {
                     </Menu.Item>
                 </Menu>
             )
-            const avaImg = `assets/avatar/${ this.props.data.avaPath }`
+            //const avaImg = `assets/avatar/${ this.props.data.avaPath }`
+            const avaImg = `${config.SERVER_URL}/avatar/${ this.props.data.avaPath }`
             return [
                 <li key="menu">
                     <Dropdown overlay={ loggedinMenu } trigger={['click']}>

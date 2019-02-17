@@ -57,7 +57,7 @@
     flex-wrap: wrap;
 }
 
-.t1, .t2, .t3, .tag{
+.t1, .t2, .t3, .tag, .prefretureTag{
     color: @primary-color;
     margin: 3px;
     font-weight: 500;
@@ -68,9 +68,8 @@
     font-weight: bold;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-.t1, .t2, .t3 {
+.t1, .t2, .t3, .prefretureTag {
     color: #FFF;
-    //border: 1px double #fff;
 }
 .t1{
     background-color: #0f864b;
@@ -85,9 +84,16 @@
     background-color: #ffffff;
     transition: all 0.2s ease-in-out;
 }
-.tag:hover{
+.prefretureTag{
+    background-color: #e25959;
+    transition: all 0.2s ease-in-out;
+}
+.tag:hover, .prefretureTag:hover{
     transform: translateY(-3px);
     box-shadow: 0px 2px 2px rgba(34, 34, 34, 0.2);
+}
+.prefretureTag:hover{
+    color: #FFF;
 }
 
 .feedCard{
@@ -116,4 +122,15 @@
             padding: 0;
         }
     }
+}
+
+.contentBox{
+    margin-top: 15px;
+}
+.timestamp{
+    text-align: right;
+    font-size: 0.7rem;
+    margin-bottom: 0;
+    float: right;
+    transform: translateY(-15px);
 }
