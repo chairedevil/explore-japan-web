@@ -32,6 +32,7 @@ export class Article extends Component {
 		})
 		.then(()=>{
 
+			console.log(`${config.SERVER_URL}/articles?search=${JSON.parse(this.state.article.tags).join('+')}&rnd=1&id=${this.props.match.params.articleId}&start=&end=`)
 			axios.get(`${config.SERVER_URL}/articles?search=${JSON.parse(this.state.article.tags).join('+')}&rnd=1&id=${this.props.match.params.articleId}&start=&end=`)
 			.then((response) => {
 				this.setState({

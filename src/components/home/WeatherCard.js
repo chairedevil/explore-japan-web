@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Col, Card } from 'antd'
 import style from '../../assets/css/pages/Home.module.less'
 import moment from 'moment'
+import config from '../../config'
 
 export class WeatherCard extends Component {
   render() {
@@ -9,12 +10,14 @@ export class WeatherCard extends Component {
         <>
             {
                 this.props.weatherData.map((data)=>{
-                    //console.log(data)
-                    const weatherIcon = '../assets/weather/' + data.list[0].weather[0].icon + '.png'
-                    const weatherIcon2 = '../assets/weather/' + data.list[8].weather[0].icon + 'b.png'
-                    const weatherIcon3 = '../assets/weather/' + data.list[16].weather[0].icon + 'b.png'
-                    const weatherIcon4 = '../assets/weather/' + data.list[24].weather[0].icon + 'b.png'
-                    const weatherIcon5 = '../assets/weather/' + data.list[32].weather[0].icon + 'b.png'
+                    if(data.city.name === "Sakura"){
+                        return []
+                    }
+                    const weatherIcon = config.SERVER_URL + '/weather/' + data.list[0].weather[0].icon + '.png'
+                    const weatherIcon2 = config.SERVER_URL + '/weather/' + data.list[8].weather[0].icon + 'b.png'
+                    const weatherIcon3 = config.SERVER_URL + '/weather/' + data.list[16].weather[0].icon + 'b.png'
+                    const weatherIcon4 = config.SERVER_URL + '/weather/' + data.list[24].weather[0].icon + 'b.png'
+                    const weatherIcon5 = config.SERVER_URL + '/weather/' + data.list[32].weather[0].icon + 'b.png'
                     const temp = parseFloat((data.list[0].main.temp - 273.15).toFixed(0)) + "°"
                     const now = moment()
                     const weatherInfo = [

@@ -156,9 +156,9 @@ export class PostArticle extends Component {
         const inputValue = state.inputValue;
         let tags = state.tags;
         if (inputValue && tags.indexOf(inputValue) === -1) {
-            tags = [...tags, inputValue];
+            tags = [...tags, inputValue.trim().replace(/\s/g, '')];
         }
-        //console.log(tags);
+        console.log(tags);
         this.setState({
             tags,
             inputVisible: false,

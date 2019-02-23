@@ -39,7 +39,7 @@ export class Popular extends Component {
 					>
 						<Row className={ style.articleContainer }>
 							<Col xs={24} sm={24} md={10} lg={8} className={ style.imgBox }>
-								<Link to={`/article/${item.articleId}`}><img alt="cover" src={`assets/img/${item.coverPath}`} /></Link>
+								<Link to={`/article/${item.articleId}`}><img alt="cover" src={`${config.SERVER_URL}/img/${item.coverPath}`} /></Link>
 							</Col>
 							<Col xs={24} sm={24} md={14} lg={16} className={ style.contentBox }>
 								<div className={ style.title }>
@@ -51,7 +51,7 @@ export class Popular extends Component {
 									{item.content && stateToHTML(convertFromRaw(JSON.parse(item.content))).replace(/<(?:.|\n)*?>/gm, '')}
 								</p>
 								<div className={ style.postUser }>
-									<Avatar src={`assets/avatar/${item.avaPath}`} />
+									<Avatar src={`${config.SERVER_URL}/avatar/${ item.avaPath }`} />
 									<h4>{item.username}</h4>
 								</div>
 							</Col>

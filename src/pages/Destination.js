@@ -43,7 +43,7 @@ export class Destination extends Component {
 					{
 						this.state.listData.map((data)=>{
 							const link = `/article/${data.articleId}`
-							const coverSrc = `assets/img/${data.coverPath}`
+							const coverSrc = `${config.SERVER_URL}/img/${data.coverPath}`
 							return [
 								<Col key={data.articleId} xs={24} sm={12} md={12} lg={8} className="image-element-class">
 									<Card 

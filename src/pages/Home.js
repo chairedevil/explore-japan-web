@@ -33,6 +33,9 @@ export class Home extends Component {
   	componentDidUpdate(prevProps, prevState){
 		if( prevProps.searchVal !== this.props.searchVal || prevState.startPeriod !== this.state.startPeriod || prevState.endPeriod !== this.state.endPeriod ){
 			this.feedLoad()
+			this.setState({
+				scrollerHasMore: true
+			})
 		}
 	}
 
@@ -47,11 +50,15 @@ export class Home extends Component {
 		}, "")
 
 		this.props.searchVal.forEach((value)=>{
-		axios.get(`${config.SERVER_URL}/getWeather?city=${value.key}`)
-		.then((response) => {
+			axios.get(`${config.SERVER_URL}/getWeather?city=${value.key}`)
+			.then((response) => {
+				console.log(response)
 				this.setState({
 					weatherData: [ ...this.state.weatherData, response.data]
 				})
+			})
+			.catch((error) => {
+				//console.log(error)
 			})
 		})
     
@@ -77,7 +84,7 @@ export class Home extends Component {
 			endPeriod: dateString[1]
 		})
 	}
-
+	
 	loadingCard = () => {
 		if(this.state.isFeedLoading){
 			return [
@@ -117,7 +124,7 @@ export class Home extends Component {
 						<InfiniteScroll
 							style={{overflow:'hidden', paddingTop:10}}
 							dataLength={this.state.feedData.length}
-							next={debounce(this.feedLoad, 2000)}
+							next={debounce(this.feedLoad, 1000)}
 							hasMore={this.state.scrollerHasMore}
 							loader={<>
 									<Col xs={24} sm={12} md={12} lg={8}><Card loading className={ style.feedCard } bordered={false}></Card></Col>
