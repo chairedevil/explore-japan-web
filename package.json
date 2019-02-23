@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "10.15.1"
+    "node": "10.15.1",
+    "yarn": "1.9.4"
   },
   "dependencies": {
     "@jimmycode/draft-js-select-image-plugin": "^1.0.0",
