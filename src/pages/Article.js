@@ -156,7 +156,6 @@ export class Article extends Component {
 		}
 		return (
 			<div>
-				<div className={ style.bg }></div>
 				<Row className={ style.container }>
 					<Col xs={24} sm={24} md={16} lg={18} className={ style.contentContainer }>
 						<Card
