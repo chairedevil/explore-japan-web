@@ -203,26 +203,26 @@ class HeaderContainer extends Component {
                     <p>このサイトはreactで制作しましたので、Single-Page Applicationになります。</p>
                     <p className={ style.bold }>テスト用のメンバー<br/>username : admin01<br/>password : 1234</p>
                     <p className={ style.bold }>特徴１：キーワード推薦</p>
-                    <img src={ img1 } alt="searchbar2" />
+                    <img src={ img1 } alt="searchbar2" width="100%" />
                     <p>一部分のテキストを入力すると、キーワード（場所の名前）が出てきて、場所の名前を推薦してもらいます。</p>
-                    <img src={ img2 } alt="searchbar" />
+                    <img src={ img2 } alt="searchbar" width="100%" />
                     <p>テスト用のキーワードは「sakura」と「tokyo」で、テスト用の期間は4/1から4/31までです。試してみてください。</p>
                     <p className={ style.bold }>結果詳細</p>
-                    <img src={ img3 } alt="detail" />
+                    <img src={ img3 } alt="detail" width="100%" />
                     <p>結果を選択して見れば、こんな感じで表示します。</p>
                     <p>保存ボタン：後で見るだけではなく、このボタンが押された回数を数えて、ランキングを見ることができます。（「TOP ARTICLES」メニューと「TOP PHOTOS」メニュー）</p>
                     <p>マップ：もし位置情報が持っている場合はマップも表示します。</p>
                     <p>関連記事：選択した結果と関連に関するものが並んで、簡単に選べます。</p>
-                    <img src={ img4 } alt="comment" />
+                    <img src={ img4 } alt="comment" width="100%" />
                     <p>コメントもできます。</p>
                     <p className={ style.bold }>特徴２：自動に位置情報を入力すること</p>
-                    <img src={ img5 } alt="uploadphoto" />
+                    <img src={ img5 } alt="uploadphoto" width="100%" />
                     <p>もし選択した画像のメタデータに位置情報がある場合は、位置情報を入力してくれて、その位置情報で都道府県の名前も判断して、入力してくれます。撮った日付も入力してもらいます。ユーザーはタイトルを入力してもらったら、投稿することができます。</p>
-                    <img src={ img6 } alt="uploadart" />
+                    <img src={ img6 } alt="uploadart" width="100%" />
                     <p>記事とイベントを投稿する場合は、詳細の部分があり、Rich Text Editorというものを準備しています。動的に画像を挿入したり、テキストの厚さを変えたり、斜めにしたり、することができます。</p>
                     <p className={ style.bold }>特徴３：記事の言語判断</p>
                     <p>このサイトは日本人でも外国人でも対応したいと思いましたから、テキストボックスに入力した文字に言語を判断して、データベースに保存して、トップページに表示します。</p>
-                    <img src={ img7 } alt="lang" />
+                    <img src={ img7 } alt="lang" width="100%" />
                     <p>この以外でも様々なことをこだわっていました。例えば、無限スクロール、パスワード暗号化、デザインなどです。</p>
                     <p>ご観覧いただき、ありがとうございます。</p>
                 </Modal>
