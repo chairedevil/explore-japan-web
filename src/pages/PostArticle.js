@@ -41,7 +41,7 @@ export class PostArticle extends Component {
         const isJPG = file.type === 'image/jpeg'
         const isPNG = file.type === 'image/png'
         if (!isJPG && !isPNG) {
-                message.error('You can only upload JPG/PNG file!');
+            message.error('You can only upload JPG/PNG file!');
             fileExtensionFlag = false
         }
         const isLt2M = file.size / 1024 / 1024 < 20;
@@ -158,7 +158,7 @@ export class PostArticle extends Component {
         if (inputValue && tags.indexOf(inputValue) === -1) {
             tags = [...tags, inputValue.trim().replace(/\s/g, '')];
         }
-        console.log(tags);
+        //console.log(tags);
         this.setState({
             tags,
             inputVisible: false,
@@ -192,7 +192,7 @@ export class PostArticle extends Component {
                     scopeDateEnd: time2,
                     tags: JSON.stringify(this.state.tags)
                 }
-                console.log(postData)
+                //console.log(postData)
                 axios.post(`${config.SERVER_URL}/article`, postData).then((response)=>{
                     if(response.status === 200){
                         this.props.history.push("/")

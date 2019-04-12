@@ -36,7 +36,7 @@ export class PostPhoto extends Component {
         const isJPG = file.type === 'image/jpeg'
         const isPNG = file.type === 'image/png'
         if (!isJPG && !isPNG) {
-                message.error('You can only upload JPG/PNG file!');
+            message.error('You can only upload JPG/PNG file!');
             fileExtensionFlag = false
         }
         const isLt2M = file.size / 1024 / 1024 < 20;

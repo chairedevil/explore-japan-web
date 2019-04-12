@@ -114,7 +114,6 @@ export class Signup extends Component {
 
 	return (
 		<>
-			<div className={ style.bg }></div>
 			<div className={ style.contentContainer }>
 			<h2>Signup</h2>
 			<Form
