@@ -21,6 +21,10 @@ import img4 from '../../assets/help/4.jpg'
 import img5 from '../../assets/help/5.jpg'
 import img6 from '../../assets/help/6.jpg'
 import img7 from '../../assets/help/7.jpg'
+import img8 from '../../assets/help/8.jpg'
+import img9 from '../../assets/help/9.jpg'
+import img10 from '../../assets/help/10.jpg'
+import img11 from '../../assets/help/11.jpg'
 
 class HeaderContainer extends Component {
 
@@ -198,24 +202,30 @@ class HeaderContainer extends Component {
                     centered={true}
                     width={ 850 }
                 >
-                    <p>日本に旅行することには時期や季節が違ったら、景色や感じの差別があります。それで、日本に旅行することには期間がとても大切だと思います。</p>
-                    <p>このサイトは「explore Japan」というサイトです。複数のキーワードと期間で日本の観光地と行っているイベントと写真を探すサイトです。</p>
-                    <p>このサイトはreactで制作しましたので、Single-Page Applicationになります。</p>
+                    <p className={ style.alertText }><b>※ページに入った瞬間にフィードのデータが表示できないことがあるます。それはサーバがまだ起動していないという問題です。しばらく待って、もう一度ページに入ってください。申し訳ございません。</b></p>
+                    <p>日本に旅行することには時期や季節が違ったら、景色や感じの差別があります。それで、日本に旅行することには期間がとても大切だと思います。もし、自分が旅行できる期間（休める期間など）に合う観光地やイベントを探すサイトがあれば、便利になれると思った上で、この作品を制作していました。それだけではなくて、指定した期間内に撮った写真も探せます。写真を撮ることが好きな人に役にたて、撮りに行く前に参照することができます。</p>
+                    <p>このサイトは「explore Japan」というサイトです。複数のキーワードと期間で日本の観光地と行っているイベントと写真を案内するサイトです。</p>
+                    <p>このサイトはreactで制作しましたので、Single-Page Applicationになります。ちなみに、サーバーはnodejsとMySQLになります。</p>
                     <p className={ style.bold }>テスト用のメンバー<br/>username : admin01<br/>password : 1234</p>
                     <p className={ style.bold }>特徴１：キーワード推薦</p>
-                    <img src={ img1 } alt="searchbar2" width="100%" />
+                    <img src={ img1 } alt="searchbar2" width="70%" />
+                    <img src={ img2 } alt="searchbar" width="70%" />
                     <p>一部分のテキストを入力すると、キーワード（場所の名前）が出てきて、場所の名前を推薦してもらいます。</p>
-                    <img src={ img2 } alt="searchbar" width="100%" />
-                    <p>テスト用のキーワードは「sakura」と「tokyo」で、テスト用の期間は4/1から4/31までです。試してみてください。</p>
+                    <p>テスト用のキーワードは「sakura」と「tokyo」で、テスト用の期間は4/1から4/31までです。だんだん入力すると、結果が絞られます。試してみてください。</p>
                     <p className={ style.bold }>結果詳細</p>
                     <img src={ img3 } alt="detail" width="100%" />
                     <p>結果を選択して見れば、こんな感じで表示します。</p>
-                    <p>保存ボタン：後で見るだけではなく、このボタンが押された回数を数えて、ランキングを見ることができます。（「TOP ARTICLES」メニューと「TOP PHOTOS」メニュー）</p>
-                    <p>マップ：もし位置情報が持っている場合はマップも表示します。</p>
-                    <p>関連記事：選択した結果と関連に関するものが並んで、簡単に選べます。</p>
+                    <p><b>マップ</b>：もし位置情報が持っている場合はマップも表示します。</p>
+                    <p><b>関連記事</b>：選択した結果と関連に関するものが並んで、簡単に選べます。</p>
+                    <p><b>保存ボタン</b>：後で見るという機能だけではなく、このボタンが押された回数を数えて、ランキングを見ることができます。（「TOP ARTICLES」メニューと「TOP PHOTOS」メニュー）</p>
+                    <img src={ img10 } alt="menu" width="50%" />
+                    <img src={ img8 } alt="photorank" width="50%" style={{ display : 'inline' }} />
+                    <img src={ img9 } alt="articlerank" width="50%" style={{ display : 'inline' }} />
                     <img src={ img4 } alt="comment" width="100%" />
                     <p>コメントもできます。</p>
-                    <p className={ style.bold }>特徴２：自動に位置情報を入力すること</p>
+                    <img src={ img11 } alt="menu" width="200px"/>
+                    <p>ログインした場合は写真投稿（管理者と一般会員）と記事投稿（管理者のみ）できます。</p>
+                    <p className={ style.bold }>特徴２：（投稿ページ）自動に位置情報を入力すること</p>
                     <img src={ img5 } alt="uploadphoto" width="100%" />
                     <p>もし選択した画像のメタデータに位置情報がある場合は、位置情報を入力してくれて、その位置情報で都道府県の名前も判断して、入力してくれます。撮った日付も入力してもらいます。ユーザーはタイトルを入力してもらったら、投稿することができます。</p>
                     <img src={ img6 } alt="uploadart" width="100%" />
