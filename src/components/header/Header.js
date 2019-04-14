@@ -218,7 +218,7 @@ class HeaderContainer extends Component {
                     <p><b>マップ</b>：もし位置情報が持っている場合はマップも表示します。</p>
                     <p><b>関連記事</b>：選択した結果と関連に関するものが並んで、簡単に選べます。</p>
                     <p><b>保存ボタン</b>：後で見るという機能だけではなく、このボタンが押された回数を数えて、ランキングを見ることができます。（「TOP ARTICLES」メニューと「TOP PHOTOS」メニュー）</p>
-                    <img src={ img10 } alt="menu" width="50%" />
+                    <img src={ img10 } alt="menu" width="300px" />
                     <img src={ img8 } alt="photorank" width="50%" style={{ display : 'inline' }} />
                     <img src={ img9 } alt="articlerank" width="50%" style={{ display : 'inline' }} />
                     <img src={ img4 } alt="comment" width="100%" />
@@ -232,7 +232,7 @@ class HeaderContainer extends Component {
                     <p>記事とイベントを投稿する場合は、詳細の部分があり、Rich Text Editorというものを準備しています。動的に画像を挿入したり、テキストの厚さを変えたり、斜めにしたり、することができます。</p>
                     <p className={ style.bold }>特徴３：記事の言語判断</p>
                     <p>このサイトは日本人でも外国人でも対応したいと思いましたから、テキストボックスに入力した文字に言語を判断して、データベースに保存して、トップページに表示します。</p>
-                    <img src={ img7 } alt="lang" width="50%" />
+                    <img src={ img7 } alt="lang" width="330px" />
                     <p>この以外でも様々なことをこだわっていました。例えば、無限スクロール、パスワード暗号化、デザイン、レスポンシブなどです。</p>
                     <p>ご観覧いただき、ありがとうございます。</p>
                 </Modal>
